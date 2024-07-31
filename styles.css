@@ -1,0 +1,238 @@
+/* CSS Reset Inicio */
+* {
+    font-family: sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+input,
+button {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+img,
+video,
+svg {
+    height: auto;
+    max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition: none;
+    }
+}
+
+/* CSS Reset Fin */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --input-background: #27272a;
+    --input-color: #fff;
+    --span-color: #a1a1aa;
+}
+
+body {
+    background-color: black;
+}
+
+.design_system {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, min(300px, 1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Basic Input */
+.next_ui_input {
+    label {
+        display: block;
+        position: relative;
+
+        input {
+            padding: 1rem 0.75rem;
+            font-size: 0.85rem;
+            color: var(--input-color);
+            background-color: var(--input-background);
+            border-radius: 0.4rem;
+
+            &:not(:placeholder-shown)~span {
+                top: -0.55rem;
+                left: 0.7rem;
+                font-size: 0.7rem;
+                transition: 0.2s all ease-in-out;
+            }
+        }
+
+        span {
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--span-color);
+            transition: 0.2s all ease-in-out;
+            pointer-events: none;
+        }
+    }
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: flex;
+    justify-content: center;
+
+    input {
+        display: none;
+
+        &:checked+label span {
+            background-color: transparent;
+        }
+
+        &:checked+label span::before {
+            top: -11px;
+            transform: rotate(135deg);
+        }
+
+        &:checked+label span::after {
+            top: -29px;
+            transform: rotate(-135deg);
+        }
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: var(--input-background);
+        border-radius: 50%;
+        cursor: pointer;
+
+        span::before,
+        span::after,
+        span {
+            width: 32px;
+            height: 3px;
+            border-radius: 2px;
+            background-color: var(--input-color);
+            transition: 0.3s;
+        }
+
+        span::after,
+        span::before {
+            content: "";
+            position: relative;
+            display: inline-block;
+        }
+
+        span::after {
+            top: -18px;
+        }
+
+        span::before {
+            top: -22px;
+        }
+    }
+}
+
+/* Send Button */
+@keyframes fly {
+    from {
+        transform: translateY(0.1rem);
+    }
+
+    to {
+        transform: translateY(-0.1rem);
+    }
+}
+
+.send_button {
+    display: flex;
+    justify-content: center;
+
+    button {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: 0.2s;
+        border-radius: 16px;
+        padding: 0.6rem 1.2rem;
+        color: var(--input-color);
+        background-color: var(--input-background);
+
+        svg {
+            vertical-align: middle;
+        }
+
+        span,
+        svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover {
+            span {
+                transform: translateX(5rem);
+            }
+
+            svg {
+                transform: translateX(1.5rem) rotate(45deg) scale(1.1);
+            }
+
+            .wrapper {
+                animation: fly 0.6s ease-in-out infinite alternate;
+            }
+        }
+
+        &:active {
+            scale: 0.95;
+        }
+    }
+}
