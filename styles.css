@@ -167,7 +167,7 @@ body {
 }
 
 /* Send Button */
-@keyframes fly {
+@keyframes floating {
     from {
         transform: translateY(0.1rem);
     }
@@ -177,46 +177,39 @@ body {
     }
 }
 
-.send_button {
+.send_button button {
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    background-color: #27272a;
+    color: #fff;
+    border-radius: 16px;
+    padding: .6rem 1.2rem;
+    transition: transform .3s;
+}
 
-    button {
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: 0.2s;
-        border-radius: 16px;
-        padding: 0.6rem 1.2rem;
-        color: #fff;
-        background-color: #27272a;
+.send_button button span,
+.send_button button svg {
+    transition: transform .3s ease-in-out;
+    vertical-align: middle;
+}
 
-        svg {
-            vertical-align: middle;
-        }
+.send_button button:hover span {
+    transform: translateX(5rem);
+}
 
-        span,
-        svg {
-            transition: transform 0.3s ease-in-out;
-        }
+.send_button button:hover svg {
+    transform: translateX(1.5rem) rotate(45deg) scale(1.1);
+}
 
-        &:hover {
-            span {
-                transform: translateX(5rem);
-            }
+.send_button button:hover .wrapper {
+    animation: floating 0.6s ease-in-out infinite alternate;
+}
 
-            svg {
-                transform: translateX(1.5rem) rotate(45deg) scale(1.1);
-            }
 
-            .wrapper {
-                animation: fly 0.6s ease-in-out infinite alternate;
-            }
-        }
-
-        &:active {
-            scale: 0.95;
-        }
-    }
+.send_button button:active {
+    transform: scale(0.95);
 }
